@@ -1,0 +1,18 @@
+Food fact
+
+Geddy Schellevis
+0883374
+
+Voor het project moeten de volgende libraries beschikbaar zijn
+
+shiny,tm,SnowballC,wordcloud
+
+Voor deze opdracht heb ik punten in de dataset moeten vertalen.
+De code bevat 3 file's ui de server en global file
+
+UI: bestaat uit front end code
+Server: voert gemakkelijke methodes uit of delegeert ze naar de global file
+Global: Bevat de meer ingewikkeldere functies.
+
+Ik heb er voor gekozen om deze structuur aan te houden om de code overzichtelijk te houden
+en kan op deze manier de code gemakkelijk onderhouden en herbruiken.

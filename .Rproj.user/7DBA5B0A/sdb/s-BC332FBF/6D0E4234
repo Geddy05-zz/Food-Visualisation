@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nalergieTags <- c(\"Milk\", \"Wheat\",\"Soya\",\"Egg\",\"Butter\",\"Lactose\",\"Gluten\",\"Moutarde\",\"Tuna\",\"Oats\",\"Fish\",\"Salmon\")\n\n\nshinyUI(fluidPage(\n  #import css\n  includeCSS(\"www/style.css\"),\n  \n  # Application title\n  titlePanel(\"Food Data\"),\n\n  # Sidebar\n  sidebarLayout(\n    sidebarPanel(\n    checkboxGroupInput(\"variable\", \"Allergieen\",\n                       alergieTags)\n    ,width = 2),\n\n    # main Panel with tabs\n    mainPanel(\n      tabsetPanel(\n        tabPanel(\"Intro\", \n                 htmlOutput(\"intro\")),\n        \n        tabPanel(\"type keuken met meeste allergieen\", \n                 textOutput(\"percentage\"),\n                 plotOutput(\"distPlot\"),\n                 \"http://world.openfoodfacts.org/data\"),\n        \n        tabPanel(\"verzameling allergien\",\"Het laden van de wordcloud kan even duren door de vele gerechten\" ,\n                 plotOutput(\"wordcloud\"),\n                  \"Wanneer de wordcloud geladen is zal je verschillende woorden in andere talen dan\n                  engels tegen komen. Dat komt doordat de data set veel verschillende talen bevat.\"\n                 ),\n        \n        tabPanel(\"percentage van allergieen\" ,\"Het laden van de tabel kan even duren door de vele gerechten\",\n                 tableOutput('tableAllergieen'),\n                 \" In de tabel hierboven kan je aflezen hoeveel procent van de gerechten niet gegeten kunnen worden als je bepaalde allergie hebt. \n                 Helaas is de dataset qua allergie niet volledig\")\n        )\n      ,width = 9)\n  )\n))\n",
+    "created" : 1478162754329.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1481721668",
+    "id" : "6D0E4234",
+    "lastKnownWriteTime" : 1479330630,
+    "last_content_update" : 1479330630671,
+    "path" : "~/Documents/Food/Food/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

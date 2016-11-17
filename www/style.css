@@ -1,0 +1,36 @@
+h3 {
+  font-weight: 500;
+  line-height: 1.1;
+  color: #7E5F39;
+}
+
+h4{
+  font-weight: 500;
+  color: #7E5F39;
+  line-height: 1.1;
+}
+
+body {
+  background-color: #E8DAD2;
+  font-family: Century Gothic, sans-serif;
+  color: #7E5F39
+
+}
+
+a{
+    color: #655341;
+}
+
+.nav-tabs{
+  background-color: #CEC6BB;
+  font-weight: 250;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+   background-color: #939F99;
+   color: #E8DAD2;
+}
+
+.well{
+  background-color: #CEC6BB;
+}

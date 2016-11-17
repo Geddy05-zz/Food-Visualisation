@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(tm)\nlibrary(SnowballC)\nlibrary(wordcloud)\n\nfoodData <- read.csv(\"foodData.csv\")\n# With the lines below i cleaned up the data for a faster response\n#drops <- c(\"product_name\",\"brands\",\"origins\",\"countries\",\"ingredients_text\",\"allergens\",\"traces\",\"main_category\",\"image_url\")\n#foodData <- foodData[ ,(names(foodData) %in% drops)]\n#write.csv(foodData,file = \"foodData.csv\")\n#foodData.csv\n\nshinyServer(function(input, output) {\n\n  output$distPlot <- renderPlot({\n    # get te recepies with selected allergie\n    allergie <- foodData[grep(paste(input$variable, collapse = \"|\"), foodData$allergens,ignore.case=TRUE), ]\n    \n    #calculate percentage\n    (nrow(allergie) / nrow(foodData)) * 100\n     t <- table(allergie$countries)\n\n    barplot(head(t[order(t,decreasing=TRUE)], 6),main= \"Top 6 kichtens containse allergie ingredients\", \n            ylab=\"number of recepies\",col=c(\"royalblue\",\"palegreen\",\"orangered\",\"salmon\",\"lightgoldenrod\",\"olivedrab\"))\n  })\n  \n  # get totaal percentage you can eat save\n  output$percentage<- renderText({\n    getTotaalPercentage(input$variable)\n  })\n  \n  # render the wordcloud of all allergies\n  output$wordcloud <- renderPlot({\n    wordcloud(getWordcloudVariable(), max.words = 100, scale=c(10,.8), random.order = FALSE,colors=brewer.pal(8, \"Dark2\"))\n  })\n  \n  # render percentage table\n  output$tableAllergieen <- renderTable(createPercentTable())\n  \n  # intro text\n    output$intro <- renderUI({\n      HTML(intro())\n    })\n})\n",
+    "created" : 1478162754468.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3210258423",
+    "id" : "73C722AA",
+    "lastKnownWriteTime" : 1479330623,
+    "last_content_update" : 1479330623814,
+    "path" : "~/Documents/Food/Food/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

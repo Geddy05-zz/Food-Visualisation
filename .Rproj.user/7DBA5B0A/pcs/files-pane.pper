@@ -1,0 +1,9 @@
+{
+    "path" : "~/Documents/Food/Food",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

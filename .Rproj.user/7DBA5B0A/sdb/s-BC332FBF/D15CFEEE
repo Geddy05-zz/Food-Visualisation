@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#get the data\nalergieTags <- c(\"Milk\", \"Wheat\",\"Soya\",\"Egg\",\"Butter\",\"Lactose\",\"Gluten\",\"Moutarde\",\"Oats\",\"Fish\",\"salmon\",\"Tuna\")\nfoodData <- read.csv(\"foodData.csv\")\n\n# create the intro page Using html \nintro<-function()\n{\n  paste(\"<h4>In het menu hiernaast kunt u meerdere allergien selecteren.</h4>\n        <br><br>\n        <h3> Extra info </h3><br>\n        De dataset die gebruikt wordt komt van http://world.openfoodfacts.org/data \\n\n        Deze dataset bestaat uit meerder talen deze heb ik zoveel mogelijk vertaald naar het engels\\n\n        Helaas is dit niet overal gelukt. Me grootste focus lag op de visualisaties.<br><br>\n        <h3> Welke visualisaties </h3><br>\n        Ik maak gebruik van 3 verschillende visualisaties. De Eerste is een barplot waarin je kunt zien \\n\n        uit welke landen de gerechten komen waar de door u geselecteerde gerechten in zitten. op deze\n        pagina is ook te zien hoeveel procent van alle gerechten u veilig kan eten. NOTE: Niet bij alle gerechten in de\n        dataset zijn de allergieen goed ingevuld.<br>\n        2de visualisatie is een wordcloud van alle allergieen die in dataset te vinden zijn.<br>\n        3de visualisatie is een table met allergie en percentage gerechten waar de allergie in voor komt volgens de data set.\")\n}\n\n# Function for getting al the words from data set\n# some columns contains multiple words seperated bij a comma,\n# i split them so we can count the words.\ngetWordcloudVariable <- function(){\n  words <- unlist(strsplit(as.character(foodData$allergens),','))\n  return(Corpus(VectorSource(words)))\n}\n\n# get percentage a user can eat\ngetTotaalPercentage<-function(input){\n  totaalPercent <- 100 -calculatePercentage(input)\n  if (totaalPercent == 0){\n    totaalPercent = 100\n  }\n  paste(\" You can eat\",totaalPercent,\"% of all recepies\")\n}\n\n# calculate percantage from te input compare with the dataset\ncalculatePercentage <- function(input){\n  allergie <- foodData[grep(paste(input, collapse = \"|\"), foodData$allergens,ignore.case=TRUE), ]\n  ((nrow(allergie) / nrow(foodData)) * 100)\n}\n\n# create the table with percentage on off each allergie\ncreatePercentTable<- function(){\n  data <- data.frame( \"Alergie\" = character(), \"percentage\" = integer(), stringsAsFactors=FALSE)\n  for (tag in alergieTags){\n    data[nrow(data) + 1, ] <- c( tag, round(calculatePercentage(tag),2))\n  }\n  return(data)\n}\n",
+    "created" : 1478690007623.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2997729001",
+    "id" : "D15CFEEE",
+    "lastKnownWriteTime" : 1479330614,
+    "last_content_update" : 1479330614225,
+    "path" : "~/Documents/Food/Food/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
